@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: 53349561a311c2ace38d4cdc2c8656b4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-10-31 10:36+0200\n"
-"PO-Revision-Date: 2023-10-31 12:50\n"
+"PO-Revision-Date: 2023-10-31 13:47\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian\n"
 "Language: no_NO\n"
@@ -19,13 +19,13 @@ msgstr ""
 
 #: data/org.bredos.welcome.desktop.in:3
 msgid "BredOS welcome"
-msgstr ""
+msgstr "BredOS velkommen"
 
 #: data/org.bredos.welcome.appdata.xml.in:7
 msgid "No description"
-msgstr ""
+msgstr "Ingen beskrivelse"
 
 #: data/ui/window.ui:79
 msgid "About Bakery"
-msgstr ""
+msgstr "Om Bakery"
 
