@@ -1,3 +1,13 @@
+gnome.compile_resources(
+  'org.bredos.welcome',
+  'org.bredos.welcome.gresource.xml',
+  gresource_bundle: true,
+  source_dir: meson.current_build_dir(),
+  install_dir: join_paths(get_option('datadir'), 'welcome/data'),
+  install: true
+)
+
+
 desktop_file = i18n.merge_file(
         input: 'org.bredos.welcome.desktop.in',
        output: 'org.bredos.welcome.desktop',
@@ -36,8 +46,8 @@ if compile_schemas.found()
        args: ['--strict', '--dry-run', meson.current_source_dir()])
 endif
 
-install_data('window.ui',
-  install_dir: join_paths(get_option('datadir'), 'welcome/data')
+install_data('ui/window.ui',
+  install_dir: join_paths(get_option('datadir'), 'welcome/data/ui')
 )
 
 

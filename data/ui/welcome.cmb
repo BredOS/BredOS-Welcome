@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<!DOCTYPE cambalache-project SYSTEM "cambalache-project.dtd">
+<cambalache-project version="0.13.1" target_tk="gtk-4.0">
+  <ui>
+	(1,4,"window.ui","window.ui",None,None,None,None,None,None,None),
+	(2,None,"ui2.ui","ui2.ui",None,None,None,None,None,None,None)
+  </ui>
+  <object>
+	(1,4,"AdwWindow","WelcomeWindow",None,None,None,None,None,None),
+	(1,5,"AdwToolbarView",None,4,None,None,None,None,None),
+	(1,7,"AdwHeaderBar","header_bar",5,None,"top",None,None,None),
+	(1,8,"AdwViewSwitcher",None,7,None,None,None,None,None),
+	(1,9,"AdwViewSwitcherBar","switcher_bar",5,None,"bottom",None,1,None),
+	(1,10,"AdwBreakpoint",None,4,None,None,None,None,"&lt;condition&gt;max-width: 550sp&lt;/condition&gt;&lt;setter object=\"switcher_bar\" property=\"reveal\"&gt;True&lt;/setter&gt;&lt;setter object=\"header_bar\" property=\"title-widget\"/&gt;"),
+	(1,12,"(external)","6",None,None,None,None,None,None),
+	(1,15,"GtkMenuButton",None,7,None,"end",None,-1,None),
+	(1,16,"(menu)","pop_menu",None,None,None,None,-1,None),
+	(1,17,"(item)",None,16,None,None,None,-1,None),
+	(1,18,"GtkBox",None,5,None,None,None,-1,None),
+	(1,19,"AdwViewStack","stack",18,None,None,None,None,None),
+	(1,20,"AdwViewStackPage","home_page",19,None,None,None,None,None),
+	(1,21,"GtkBox",None,20,None,None,None,None,None),
+	(1,22,"(external)","16",None,None,None,None,None,None),
+	(1,23,"AdwStatusPage",None,21,None,None,None,None,None)
+  </object>
+  <object_property>
+	(1,4,"AdwWindow","content",None,None,None,None,None,5,None,None,None,None),
+	(1,4,"GtkWidget","height-request","350",None,None,None,None,None,None,None,None,None),
+	(1,4,"GtkWidget","hexpand-set","True",None,None,None,None,None,None,None,None,None),
+	(1,4,"GtkWidget","vexpand-set","True",None,None,None,None,None,None,None,None,None),
+	(1,4,"GtkWidget","width-request","565",None,None,None,None,None,None,None,None,None),
+	(1,4,"GtkWindow","default-height","400",None,None,None,None,None,None,None,None,None),
+	(1,4,"GtkWindow","default-width","600",None,None,None,None,None,None,None,None,None),
+	(1,4,"GtkWindow","title","Welcome",None,None,None,None,None,None,None,None,None),
+	(1,5,"AdwToolbarView","content",None,None,None,None,None,18,None,None,None,None),
+	(1,7,"AdwHeaderBar","title-widget",None,None,None,None,None,8,None,None,None,None),
+	(1,8,"AdwViewSwitcher","policy","wide",None,None,None,None,None,None,None,None,None),
+	(1,8,"AdwViewSwitcher","stack","19",None,None,None,None,None,None,None,None,None),
+	(1,9,"AdwViewSwitcherBar","stack","19",None,None,None,None,None,None,None,None,None),
+	(1,15,"GtkMenuButton","icon-name","open-menu-symbolic",None,None,None,None,None,None,None,None,None),
+	(1,15,"GtkMenuButton","menu-model","16",None,None,None,None,None,None,None,None,None),
+	(1,17,"(item)","action","app.about",None,None,None,None,None,None,None,None,None),
+	(1,17,"(item)","label","About Bakery",1,None,None,None,None,None,None,None,None),
+	(1,18,"GtkOrientable","orientation","vertical",None,None,None,None,None,None,None,None,None),
+	(1,20,"AdwViewStackPage","child",None,None,None,None,None,21,None,None,None,None),
+	(1,20,"AdwViewStackPage","icon-name","go-home-symbolic",None,None,None,None,None,None,None,None,None),
+	(1,20,"AdwViewStackPage","title","Home",None,None,None,None,None,None,None,None,None),
+	(1,23,"AdwStatusPage","title","Welcome to BredOS!",None,None,None,None,None,None,None,None,None),
+	(1,23,"GtkWidget","hexpand","True",None,None,None,None,None,None,None,None,None),
+	(1,23,"GtkWidget","vexpand","True",None,None,None,None,None,None,None,None,None)
+  </object_property>
+  <object_data>
+	(1,17,"(item)",3,1,None,None,None,None,None,None),
+	(1,17,"(item)",1,2,"name",1,None,None,None,None)
+  </object_data>
+  <object_data_arg>
+	(1,17,"(item)",1,2,"name","about_menu_item")
+  </object_data_arg>
+</cambalache-project>

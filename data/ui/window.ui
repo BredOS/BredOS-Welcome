@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Created with Cambalache 0.17.0 -->
+<interface>
+  <!-- interface-name window.ui -->
+  <requires lib="gio" version="2.0"/>
+  <requires lib="gtk" version="4.12"/>
+  <requires lib="libadwaita" version="1.4"/>
+  <template class="WelcomeWindow" parent="AdwWindow">
+    <property name="content">
+      <object class="AdwToolbarView">
+        <property name="content">
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <child>
+              <object class="AdwViewStack" id="stack">
+                <child>
+                  <object class="AdwViewStackPage" id="home_page">
+                    <property name="child">
+                      <object class="GtkBox">
+                        <child>
+                          <object class="AdwStatusPage">
+                            <property name="hexpand">True</property>
+                            <property name="title">Welcome to BredOS!</property>
+                            <property name="vexpand">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="icon-name">go-home-symbolic</property>
+                    <property name="title">Home</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </property>
+        <child type="top">
+          <object class="AdwHeaderBar" id="header_bar">
+            <property name="title-widget">
+              <object class="AdwViewSwitcher">
+                <property name="policy">wide</property>
+                <property name="stack">stack</property>
+              </object>
+            </property>
+            <child type="end">
+              <object class="GtkMenuButton">
+                <property name="icon-name">open-menu-symbolic</property>
+                <property name="menu-model">pop_menu</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child type="bottom">
+          <object class="AdwViewSwitcherBar" id="switcher_bar">
+            <property name="stack">stack</property>
+          </object>
+        </child>
+      </object>
+    </property>
+    <property name="default-height">400</property>
+    <property name="default-width">600</property>
+    <property name="height-request">350</property>
+    <property name="hexpand-set">True</property>
+    <property name="title">Welcome</property>
+    <property name="vexpand-set">True</property>
+    <property name="width-request">565</property>
+    <child>
+      <object class="AdwBreakpoint">
+        <!-- Custom fragments -->
+        <condition>max-width: 550sp</condition>
+        <setter object="switcher_bar" property="reveal">True</setter>
+        <setter object="header_bar" property="title-widget"/>
+      </object>
+    </child>
+  </template>
+  <menu id="pop_menu">
+    <item>
+      <attribute name="action">app.about</attribute>
+      <attribute name="label" translatable="yes">About Bakery</attribute>
+      <attribute name="about_menu_item">name</attribute>
+    </item>
+  </menu>
+</interface>

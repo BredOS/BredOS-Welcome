@@ -1,4 +1,4 @@
 data/org.bredos.welcome.desktop.in
 data/org.bredos.welcome.appdata.xml.in
 data/org.bredos.welcome.gschema.xml
-data/window.ui
+data/ui/window.ui
