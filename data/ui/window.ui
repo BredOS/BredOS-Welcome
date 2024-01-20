@@ -17,8 +17,43 @@
                   <object class="AdwViewStackPage" id="home_page">
                     <property name="child">
                       <object class="GtkBox">
+                        <property name="orientation">vertical</property>
                         <child>
                           <object class="AdwStatusPage">
+                            <property name="child">
+                              <object class="GtkGrid">
+                                <property name="column-spacing">5</property>
+                                <property name="row-spacing">5</property>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="child">
+                                      <object class="AdwButtonContent">
+                                        <property name="icon-name">ac-adapter-symbolic</property>
+                                        <property name="label">test</property>
+                                      </object>
+                                    </property>
+                                    <property name="hexpand">True</property>
+                                    <layout>
+                                      <property name="column">0</property>
+                                      <property name="column-span">1</property>
+                                      <property name="row">0</property>
+                                      <property name="row-span">1</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkButton">
+                                    <property name="hexpand">True</property>
+                                    <layout>
+                                      <property name="column">1</property>
+                                      <property name="column-span">1</property>
+                                      <property name="row">0</property>
+                                      <property name="row-span">1</property>
+                                    </layout>
+                                  </object>
+                                </child>
+                              </object>
+                            </property>
                             <property name="hexpand">True</property>
                             <property name="title">Welcome to BredOS!</property>
                             <property name="vexpand">True</property>
@@ -30,6 +65,61 @@
                     <property name="title">Home</property>
                   </object>
                 </child>
+                <child>
+                  <object class="AdwViewStackPage" id="config_page">
+                    <property name="child">
+                      <object class="GtkBox"/>
+                    </property>
+                    <property name="icon-name">document-properties-symbolic</property>
+                    <property name="title">Configuration</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwViewStackPage" id="about_page_2">
+                    <property name="badge-number">1</property>
+                    <property name="child">
+                      <object class="GtkBox"/>
+                    </property>
+                    <property name="icon-name">help-info-symbolic</property>
+                    <property name="needs-attention">True</property>
+                    <property name="title">About</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkBox">
+                <property name="halign">end</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand-set">True</property>
+                <child>
+                  <object class="GtkBox">
+                    <property name="halign">end</property>
+                    <property name="hexpand">True</property>
+                    <property name="vexpand-set">True</property>
+                    <child>
+                      <object class="GtkCheckButton" id="autolaunch">
+                        <property name="label">Open at startup</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="margin-end">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-top">5</property>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="close_btn">
+                        <property name="label" translatable="yes">Close</property>
+                        <property name="margin-bottom">5</property>
+                        <property name="margin-end">5</property>
+                        <property name="margin-start">5</property>
+                        <property name="margin-top">5</property>
+                      </object>
+                    </child>
+                  </object>
+                </child>
+                <style>
+                  <class name="toolbar"/>
+                </style>
               </object>
             </child>
           </object>
