@@ -1,0 +1,22 @@
+#Maintainer panda <panda@bredos.org>
+pkgname=bredos-welcome
+pkgver=0.0.1
+pkgrel=1
+pkgdesc="BredOS Welcome Application"
+arch=("any") 
+url="https://github.com/BredOS/BredOS-Welcome"
+license=("GPL3")
+source=("git+https://github.com/BredOS/BredOS-Welcome")
+md5sums=("SKIP")
+depends=("python" "python-pyrunning" "libadwaita" "gtk4")
+makedepends=("meson" "appstream" "appstream-glib")
+
+build() {
+    cd "$srcdir/BredOS-Welcome"
+    meson setup build --prefix=/usr
+}
+package() {
+    cd "$srcdir/BredOS-Welcome/build"
+    DESTDIR="$pkgdir" meson install
+}
+

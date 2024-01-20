@@ -4,3 +4,5 @@ build/
 src/
 pkg/
 *.gresource
+*.pkg*
+packaging/*/BredOS-Welcome/
