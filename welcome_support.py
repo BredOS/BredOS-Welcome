@@ -28,7 +28,7 @@ from functools import wraps
 from traceback import print_exception
 from datetime import datetime
 from pyrunning import LoggingHandler, Command, LogMessage
-from pysetting import JSONConfiguration
+# from pysetting import JSONConfiguration
 
 def setup_translations(lang: object = None) -> gettext.GNUTranslations:
     """
@@ -135,34 +135,34 @@ def create_settings_file(settings) -> None:
         lrun(["cp", str(path.join(path.dirname(__file__), "data", "settings", "settings.json")), str(settings)])
         os.chmod(settings, 0o666)
 
-def get_settings() -> JSONConfiguration:
-    """
-    Get the settings from the settings file
+# def get_settings() -> JSONConfiguration:
+#     """
+#     Get the settings from the settings file
 
-        Does the following:
-        - Checks if the settings file exists
-        - If not, creates it
-        - If it does, loads the settings from it
+#         Does the following:
+#         - Checks if the settings file exists
+#         - If not, creates it
+#         - If it does, loads the settings from it
 
-        Returns:  A JSONConfiguration object
-        :rtype: object
-    """
-    settings = Path(
-        os.path.expanduser("~"), ".bredos", "welcome", "settings", "settings.json"
-    )
-    if not settings.exists():
-        lp("Settings file does not exist. Creating..")
-        create_settings_file(settings)
-    return JSONConfiguration(settings)
+#         Returns:  A JSONConfiguration object
+#         :rtype: object
+#     """
+#     settings = Path(
+#         os.path.expanduser("~"), ".bredos", "welcome", "settings", "settings.json"
+#     )
+#     if not settings.exists():
+#         lp("Settings file does not exist. Creating..")
+#         create_settings_file(settings)
+#     return JSONConfiguration(settings)
     
 lp("Logger started.")
 lp("Setting up translations..")
 _ = setup_translations()
 lp("Translations setup.")
-lp("Getting settings..")
-settings = get_settings()
-lp("Settings loaded.")
-print(settings)
+# lp("Getting settings..")
+# settings = get_settings()
+# lp("Settings loaded.")
+# print(settings)
 
 
 
