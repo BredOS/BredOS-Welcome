@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!-- Created with Cambalache 0.17.0 -->
+<!-- Created with Cambalache 0.91.1 -->
 <interface>
   <!-- interface-name window.ui -->
   <requires lib="gio" version="2.0"/>
@@ -21,37 +21,9 @@
                         <child>
                           <object class="AdwStatusPage">
                             <property name="child">
-                              <object class="GtkGrid">
-                                <property name="column-spacing">5</property>
-                                <property name="row-spacing">5</property>
-                                <child>
-                                  <object class="GtkButton">
-                                    <property name="child">
-                                      <object class="AdwButtonContent">
-                                        <property name="icon-name">ac-adapter-symbolic</property>
-                                        <property name="label">test</property>
-                                      </object>
-                                    </property>
-                                    <property name="hexpand">True</property>
-                                    <layout>
-                                      <property name="column">0</property>
-                                      <property name="column-span">1</property>
-                                      <property name="row">0</property>
-                                      <property name="row-span">1</property>
-                                    </layout>
-                                  </object>
-                                </child>
-                                <child>
-                                  <object class="GtkButton">
-                                    <property name="hexpand">True</property>
-                                    <layout>
-                                      <property name="column">1</property>
-                                      <property name="column-span">1</property>
-                                      <property name="row">0</property>
-                                      <property name="row-span">1</property>
-                                    </layout>
-                                  </object>
-                                </child>
+                              <object class="GtkGridView" id="home_grid">
+                                <property name="hscroll-policy">natural</property>
+                                <property name="vscroll-policy">natural</property>
                               </object>
                             </property>
                             <property name="hexpand">True</property>
@@ -66,60 +38,101 @@
                   </object>
                 </child>
                 <child>
-                  <object class="AdwViewStackPage" id="config_page">
+                  <object class="AdwViewStackPage" id="apps_page">
                     <property name="child">
-                      <object class="GtkBox"/>
+                      <object class="GtkBox">
+                        <property name="spacing">10</property>
+                        <child>
+                          <object class="GtkGridView" id="apps_grid">
+                            <property name="single-click-activate">True</property>
+                            <property name="tab-behavior">item</property>
+                          </object>
+                        </child>
+                      </object>
                     </property>
                     <property name="icon-name">document-properties-symbolic</property>
+                    <property name="title">Applications</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwViewStackPage" id="conf_page">
+                    <property name="badge-number">1</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <child>
+                          <object class="AdwNavigationSplitView">
+                            <property name="content">
+                              <object class="AdwNavigationPage">
+                                <property name="child">
+                                  <object class="GtkStack" id="conf_stack">
+                                    <property name="hexpand">True</property>
+                                    <property name="margin-bottom">10</property>
+                                    <property name="margin-end">10</property>
+                                    <property name="margin-start">10</property>
+                                    <property name="margin-top">10</property>
+                                    <property name="vexpand">True</property>
+                                    <child>
+                                      <object class="GtkStackPage">
+                                        <property name="child">
+                                          <object class="AdwPreferencesPage">
+                                            <property name="name">a</property>
+                                            <property name="title">a</property>
+                                            <child>
+                                              <object class="AdwPreferencesGroup">
+                                                <property name="title">Testing</property>
+                                                <child>
+                                                  <object class="AdwActionRow">
+                                                    <property name="activatable">False</property>
+                                                    <property name="selectable">False</property>
+                                                    <property name="subtitle">test</property>
+                                                    <property name="title">Test</property>
+                                                    <child>
+                                                      <object class="GtkSwitch">
+                                                        <property name="halign">center</property>
+                                                        <property name="valign">center</property>
+                                                      </object>
+                                                    </child>
+                                                  </object>
+                                                </child>
+                                                <child>
+                                                  <object class="AdwActionRow"/>
+                                                </child>
+                                              </object>
+                                            </child>
+                                          </object>
+                                        </property>
+                                        <property name="title" translatable="yes">General</property>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </property>
+                                <property name="hexpand">True</property>
+                                <property name="title">Test</property>
+                                <property name="vexpand">True</property>
+                              </object>
+                            </property>
+                            <property name="hexpand">True</property>
+                            <property name="show-content">True</property>
+                            <property name="sidebar">
+                              <object class="AdwNavigationPage">
+                                <property name="child">
+                                  <object class="GtkStackSidebar">
+                                    <property name="stack">conf_stack</property>
+                                  </object>
+                                </property>
+                                <property name="title">Sidebar</property>
+                              </object>
+                            </property>
+                            <property name="vexpand">True</property>
+                          </object>
+                        </child>
+                      </object>
+                    </property>
+                    <property name="icon-name">applications-system-symbolic</property>
+                    <property name="needs-attention">True</property>
                     <property name="title">Configuration</property>
                   </object>
                 </child>
-                <child>
-                  <object class="AdwViewStackPage" id="about_page_2">
-                    <property name="badge-number">1</property>
-                    <property name="child">
-                      <object class="GtkBox"/>
-                    </property>
-                    <property name="icon-name">help-info-symbolic</property>
-                    <property name="needs-attention">True</property>
-                    <property name="title">About</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkBox">
-                <property name="halign">end</property>
-                <property name="hexpand">True</property>
-                <property name="vexpand-set">True</property>
-                <child>
-                  <object class="GtkBox">
-                    <property name="halign">end</property>
-                    <property name="hexpand">True</property>
-                    <property name="vexpand-set">True</property>
-                    <child>
-                      <object class="GtkCheckButton" id="autolaunch">
-                        <property name="label">Open at startup</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="margin-end">5</property>
-                        <property name="margin-start">5</property>
-                        <property name="margin-top">5</property>
-                      </object>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="close_btn">
-                        <property name="label" translatable="yes">Close</property>
-                        <property name="margin-bottom">5</property>
-                        <property name="margin-end">5</property>
-                        <property name="margin-start">5</property>
-                        <property name="margin-top">5</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <style>
-                  <class name="toolbar"/>
-                </style>
               </object>
             </child>
           </object>
@@ -149,14 +162,14 @@
     </property>
     <property name="default-height">400</property>
     <property name="default-width">600</property>
-    <property name="height-request">350</property>
+    <property name="height-request">370</property>
     <property name="hexpand-set">True</property>
     <property name="title">Welcome</property>
     <property name="vexpand-set">True</property>
     <property name="width-request">565</property>
     <child>
       <object class="AdwBreakpoint">
-        <!-- Custom fragments -->
+        <!-- Custom object fragments -->
         <condition>max-width: 550sp</condition>
         <setter object="switcher_bar" property="reveal">True</setter>
         <setter object="header_bar" property="title-widget"/>
@@ -166,7 +179,7 @@
   <menu id="pop_menu">
     <item>
       <attribute name="action">app.about</attribute>
-      <attribute name="label" translatable="yes">About Bakery</attribute>
+      <attribute name="label" translatable="yes">About Welcome</attribute>
       <attribute name="about_menu_item">name</attribute>
     </item>
   </menu>

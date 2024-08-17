@@ -6,3 +6,5 @@ pkg/
 *.gresource
 *.pkg*
 packaging/*/BredOS-Welcome/
+builddir
+.vscode/

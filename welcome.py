@@ -21,13 +21,19 @@ import gettext
 import welcome_support
 from welcome_support import (
     _,
+    _p,
+    lrun,
+    lp,
+    app_store,
+    links_store,
 )
+from bredos.utilities import debounce
 from os import path
 
 import gi
 gi.require_version("Gtk", "4.0")
 gi.require_version("Adw", "1")
-from gi.repository import Gtk, Adw, Gio
+from gi.repository import Gtk, Adw, Gio, GObject  # type: ignore
 
 class WelcomeApp(Adw.Application):
     def __init__(self, **kwargs) -> None:
@@ -40,8 +46,6 @@ class WelcomeApp(Adw.Application):
     def do_activate(self) -> None:
         """Callback for the app.activate signal."""
 
-        _ = setup_translations()
-        
         global win
         win = self.props.active_window
         if not win:
@@ -81,36 +85,54 @@ class WelcomeApp(Adw.Application):
 class WelcomeWindow(Adw.Window):
     __gtype_name__ = "WelcomeWindow"
     
-    header_bar = Gtk.Template.Child()
-    # header_bar: Gtk.HeaderBar = Gtk.Template.Child()
-    # stack: Adw.ViewStack = Gtk.Template.Child()
-    # switcher_bar: Adw.ViewSwitcherBar = Gtk.Template.Child()
+    header_bar: Adw.HeaderBar = Gtk.Template.Child()
+    home_grid: Gtk.GridView = Gtk.Template.Child()
+    apps_grid: Gtk.GridView = Gtk.Template.Child()
 
     def __init__(self, **kwargs) -> None:
         super().__init__(**kwargs)
+        
+        # Create a selection model
+        home_selection_model = Gtk.NoSelection(model=links_store)
+        apps_selection_model = Gtk.NoSelection(model=app_store)
 
+        # Create a factory for creating widgets
+        factory = Gtk.SignalListItemFactory()
 
-def setup_translations(lang: object = None) -> gettext.GNUTranslations:
-    """
-    Setup translations
+        def create_widget(factory, list_item):
+            box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=5)
+            icon = Gtk.Image()
+            icon.set_pixel_size(48)
+            label = Gtk.Label()
+            button = Gtk.Button()
+            button.set_child(box)
+            button.set_hexpand(True)
+            button.set_vexpand(True)
+            box.append(icon)
+            box.append(label)
+            list_item.set_child(button)
 
-        Does the following:
-        - Loads the translations from the locale folder
-        - Sets the translations for the gettext module
+        def bind_widget(factory, list_item):
+            button = list_item.get_child()
+            box = button.get_child()
+            icon = box.get_first_child()
+            label = box.get_last_child()
 
-        Returns:  A gettext translation object
-        :rtype: object
-    """
-    lang_path = path.join(path.dirname(__file__), "locale")
-    # Load translations
-    if lang is not None:
-        gettext.bindtextdomain("bakery", lang_path)
-        gettext.textdomain("bakery")
-        translation = gettext.translation("bakery", lang_path, languages=[lang])
-        translation.install()
-        return translation.gettext  # type: ignore
-    else:
-        gettext.bindtextdomain("bakery", lang_path)
-        gettext.textdomain("bakery")
-        return gettext.gettext  # type: ignore
-    
+            app_item = list_item.get_item()
+            icon.set_from_icon_name(app_item.icon_name)
+            label.set_label(app_item.label)
+
+            @debounce(0.5)
+            def on_button_clicked(button):
+                lrun(app_item.command)
+
+            button.connect("clicked", on_button_clicked)
+
+        factory.connect("setup", create_widget)
+        factory.connect("bind", bind_widget)
+
+        self.home_grid.set_factory(factory)
+        self.home_grid.set_model(home_selection_model)
+        self.apps_grid.set_factory(factory)
+        self.apps_grid.set_model(apps_selection_model)
+
